@@ -149,7 +149,11 @@ SDL_Event* CON_Events(SDL_Event *event) {
 					CON_NewLineCommand(Topmost);
 
 					/* copy the input into the past commands strings */
+#ifdef _MSC_VER
+					strcpy_s(Topmost->CommandLines[0], CON_CHARS_PER_LINE, Topmost->Command);
+#else
 					strcpy(Topmost->CommandLines[0], Topmost->Command);
+#endif
 
 					/* display the command including the prompt */
 					CON_Out(Topmost, "%s%s", Topmost->Prompt, Topmost->Command);
