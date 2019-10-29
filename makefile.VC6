@@ -1,0 +1,26 @@
+# This makefile will build an SDL_console.dll with Visual C
+# It was made for VC6 on Windows 98
+#
+# nmake should build the lot.
+# .dll file goes in your system directory
+# .lib and the .h files go into the searchpath of you compiler
+#
+# Edit this:
+LIBSDL=sdl.lib sdl_image.lib
+
+# Leave the rest
+CFLAGS=-DBUILD_DLL -DWIN32
+
+.c.obj:
+	$(CC) $(CFLAGS) -I. $(CPPFLAGS) -c $(<:/=\)
+
+OBJS=SDL_console.obj DT_drawtext.obj internal.obj
+
+SDL_Console.dll: $(OBJS)
+	cl $(OBJS) /link /dll /out:$@ $(LIBSDL)
+
+clean:
+	del *.obj
+	del *.lib
+	del *.exp
+	del *.dll

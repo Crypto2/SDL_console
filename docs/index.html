@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>SDL Console</title>
+  <style type="text/css">
+<!--
+.titel {  margin-top: -25px; clip:  rect(-50px   )}
+-->
+  </style>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(204, 204, 255);"
+ link="#0000ee" alink="#0000ee" vlink="#551a8b">
+<p align="center"><font face="Arial, Helvetica, sans-serif"><font
+ size="7"><b>SDL Console</b></font></font></p>
+			
+<p class="titel" align="center"><font
+ face="Arial, Helvetica, sans-serif"><font size="4"><b>The power of
+Quake as a library for SDL</b></font></font></p>
+<div style="text-align: right;">
+<address><small><a href="https://sourceforge.net/projects/sdlconsole/">Project
+hosted on sourceforge.net </a> <a href="http://sourceforge.net"> </a> <a
+ href="http://sourceforge.net"><img
+ src="http://sourceforge.net/sflogo.php?group_id=81481&amp;type=1"
+ width="88" height="31" border="0" alt="SourceForge.net Logo"></a> <br>
+created with Mozilla Composer by <a
+ href="mailto:reflex-2000@gmx.net?subject=SDL_console">Clemens Wacha</a></small></address>
+</div>
+<table cellpadding="5" cellspacing="0" border="0"
+ style="text-align: left; width: 100%;">
+  <tbody>
+    <tr>
+      <td
+ style="vertical-align: top; color: rgb(255, 255, 255); background-color: rgb(102, 102, 102); width: 200px;"><big><big><big><span
+ style="font-family: helvetica,arial,sans-serif; font-weight: bold;">menu</span></big></big></big></td>
+      <td style="vertical-align: top;" bgcolor="#666666"><big
+ style="color: rgb(255, 255, 255);"><big><big><span
+ style="font-family: helvetica,arial,sans-serif; font-weight: bold;">news</span></big></big></big><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <table cellpadding="1" cellspacing="0" border="0"
+ style="text-align: left; width: 100%;">
+        <tbody>
+          <tr>
+            <td
+ style="vertical-align: top; background-color: rgb(0, 0, 0);">
+            <table cellpadding="5" cellspacing="0" border="0"
+ style="text-align: left; width: 100%; background-color: rgb(153, 153, 255);">
+              <tbody>
+                <tr>
+                  <td
+ style="vertical-align: top; background-color: rgb(102, 102, 102);"
+ rowspan="1" colspan="1"><span
+ style="font-family: helvetica,arial,sans-serif; font-weight: bold; color: rgb(255, 255, 255);">Downloads</span><br>
+                  </td>
+                </tr>
+                <tr style="font-family: helvetica,arial,sans-serif;">
+                  <td style="vertical-align: top;" rowspan="1"
+ colspan="1"><small>Sourcecode (all platforms):<br>
+                  </small>
+                  <ul style="list-style-type: square;">
+                    <small> </small> <li><small><a
+ href="http://prdownloads.sourceforge.net/sdlconsole/sdlconsole-2.1.tar.gz?download">sdlconsole-2.1.tar.gz</a></small><br>
+                    </li>
+                    <small> </small>
+                  </ul>
+                  <small>Windows binaries:<br>
+                  </small>
+                  <ul style="list-style-type: square;">
+                    <li><a
+ href="http://prdownloads.sourceforge.net/sdlconsole/sdlconsole-bin-win32-2.1.zip?download"><small>sdlconsole-bin-win32-2.1.zip</small></a></li>
+                  </ul>
+                  <small> <br>
+                  <br>
+Debian:<br>
+apt-get install libsdl-console-dev</small><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table style="text-align: left; width: 100%;" border="0"
+ cellspacing="0" cellpadding="1">
+        <tbody>
+          <tr>
+            <td colspan="1" rowspan="1"
+ style="vertical-align: top; background-color: rgb(0, 0, 0);">
+            <table cellpadding="5" cellspacing="0" border="0"
+ style="text-align: left; width: 100%; background-color: rgb(153, 153, 255);">
+              <tbody>
+                <tr>
+                  <td
+ style="vertical-align: top; background-color: rgb(102, 102, 102);"
+ rowspan="1" colspan="1"><span
+ style="font-family: helvetica,arial,sans-serif; font-weight: bold; color: rgb(255, 255, 255);">Screenshots</span></td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top;" rowspan="1"
+ colspan="1"><small><br>
+                  <a href="screen1.gif"><span
+ style="font-family: helvetica,arial,sans-serif;">Three consoles (from
+win32 example)</span></a></small><br>
+                  <small><a href="screen2.gif"><span
+ style="font-family: helvetica,arial,sans-serif;">Streched to half
+screen (linux)</span></a></small><br>
+                  <small><span
+ style="font-family: helvetica,arial,sans-serif;"><a href="screen3.gif">Yes,
+it runs on Mac OS X too!!</a><br>
+                  <br>
+                  <br>
+                  </span></small> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;" rowspan="1" colspan="1"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table cellpadding="1" cellspacing="0" border="0"
+ style="text-align: left; width: 100%;">
+        <tbody>
+          <tr>
+            <td
+ style="vertical-align: top; background-color: rgb(0, 0, 0);"
+ rowspan="1" colspan="1">
+            <table cellpadding="5" cellspacing="0" border="0"
+ style="text-align: left; width: 100%;">
+              <tbody>
+                <tr>
+                  <td
+ style="vertical-align: top; background-color: rgb(102, 102, 102);"
+ rowspan="1" colspan="1"><span
+ style="font-family: helvetica,arial,sans-serif; font-weight: bold; color: rgb(255, 255, 255);">Online
+Documentation</span></td>
+                </tr>
+                <tr>
+                  <td
+ style="vertical-align: top; background-color: rgb(153, 153, 255);"
+ rowspan="1" colspan="1"><small><span
+ style="font-family: helvetica,arial,sans-serif;">The Documentation is
+automatically created using Doxygen. <a href="doc/index.html">Click
+here to read it.</a><br>
+Documentation as <a href="sdlconsole-2.1-refman.pdf">PDF</a> (219kb).<br>
+                  </span></small> <small><span
+ style="font-family: helvetica,arial,sans-serif;"></span></small><br>
+                  <small><span
+ style="font-family: helvetica,arial,sans-serif;"></span></small><font
+ face="Helvetica, Arial, sans-serif"><small>Here's a <a
+ href="sdlconsole_uml_chart.gif">UML Chart</a> that describes the
+internals of the console. Created with <a
+ href="http://www.gentleware.com/">PoseidonUML</a>.</small></font></td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;" rowspan="1" colspan="1"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      </td>
+      <td style="vertical-align: top;">
+      <table cellpadding="1" cellspacing="0" border="0" width="100%">
+        <tbody>
+          <tr>
+            <td valign="top" rowspan="1" colspan="1" bgcolor="#000000">
+            <table cellpadding="5" cellspacing="0" border="0"
+ style="width: 100%; background-color: rgb(153, 153, 255);">
+              <tbody>
+                <tr>
+                  <td valign="top" bgcolor="#666666"><span
+ style="font-family: helvetica,arial,sans-serif; font-weight: bold; color: rgb(255, 255, 255);">What
+is it?</span><br>
+                  </td>
+                  <td valign="top" bgcolor="#666666"><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top;" rowspan="1"
+ colspan="2"><small><span
+ style="font-family: helvetica,arial,sans-serif;">SDL_Console is a
+console that can be added to any SDL application. It  is similar to
+Quake and other games consoles. A console is meant to be a very simple
+way of interacting with a program and executing commands. You can also
+have more than one console at a time. <br>
+                  <br>
+                  <span style="font-weight: bold;">Need Help!!</span><br>
+I plan to create a seperate <span style="font-weight: bold;">OpenGL</span>
+version. I need someone with OpenGL abilities to help me. Read below for
+more info.<br>
+                  <br>
+                  <b>Command execution: </b>A string that is entered
+in the console will be passed to a user-defined function which should
+then parse the string and call other functions or just set parameters.
+This is a different behaviour as in earlier versions of the console! The
+built-in callback support has been completely removed. It should now be
+much easier to implement the console in existing projects. <br>
+                  <br>
+                  </span></small><small><span
+ style="font-family: helvetica,arial,sans-serif;"> Also included are
+simple text and font handling routines for bitmap fonts. Bitmap fonts
+can be loaded up and text can be outputted to the surfaces using the
+different fonts. These bitmap font routines can be used seperately
+without the console. The text drawing routines are in the files DT_*.
+For a *real* font engine you should check SFont.</span></small><br>
+                  <small><span
+ style="font-family: helvetica,arial,sans-serif;"><br>
+SDL_Console is released under GNU/LGPL licence ( see <a
+ href="http://www.gnu.org/copyleft/lesser.html">http://www.gnu.org</a>
+for more information )<br>
+                  <b><br>
+                  </b></span></small><small><span
+ style="font-family: helvetica,arial,sans-serif;"><b>Dependencies:</b>
+SDL_Console depends on the following two libraries<br>
+                  </span></small>
+                  <ul>
+                    <li><small><span
+ style="font-family: helvetica,arial,sans-serif;">SDL <a
+ href="http://www.libsdl.org">http://www.libsdl.org</a>&nbsp;</span></small></li>
+                    <li><small><span
+ style="font-family: helvetica,arial,sans-serif;">SDL_image (optional) <a
+ href="http://www.libsdl.org/projects/SDL_image">http://www.libsdl.org/projects/SDL_image</a></span></small></li>
+                  </ul>
+                  <br>
+                  <span style="font-family: helvetica,arial,sans-serif;"><small><span
+ style="font-weight: bold;">Future Plans:</span><br>
+During development I have found some more design bugs. It is now
+difficult to include SDL_console into a C++ project (it works good if
+you like global pointers). To make integration easier, I will add a
+polling mode. Entered command get saved in a linked list for further
+processing. You can poll for new commands. Right now you need a callback
+function that gets called when you have enterd a command.<br>
+                  <br>
+Another point is OpenGL compatibility. It works for now but it's not
+very fast. I plan to make a second version of the console wich supports
+OpenGL natively by converting the current SDL_Surfaces to textures.
+Unfortunately I have never done OpenGL before. It would be great if
+someone could help me.<br>
+                  <span style="font-weight: bold;"><br>
+                  <br>
+Authors:</span><br>
+Original Project: <a href="mailto:mongoose@mongeese.org">Garret Banuk</a><br>
+Version 2.x, Documentation: <a href="mailto:reflex-2000@gmx.net">Clemens
+Wacha</a><br>
+Version 1.x: <a href="mailto:talanthyr@tuxfamily.org">Boris Lesner</a></small><br>
+                  </span> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" rowspan="1" colspan="1"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table cellpadding="1" cellspacing="0" border="0" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top" rowspan="1" colspan="1" bgcolor="#000000">
+      <table cellpadding="5" cellspacing="0" border="0"
+ style="width: 100%; background-color: rgb(204, 204, 255);">
+        <tbody>
+          <tr>
+            <td valign="top" bgcolor="#666666"><span
+ style="font-family: helvetica,arial,sans-serif; font-weight: bold; color: rgb(255, 255, 255);">Version
+History</span><br>
+            </td>
+            <td valign="top" bgcolor="#666666"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;" rowspan="1" colspan="2"><br>
+            <blockquote><small><span
+ style="font-family: helvetica,arial,sans-serif;"> <b>August 28, 2003 </b>SDL_console
+2.1 released. I have made lots of bugfixes in the command line code and
+killed some segfaults. But most important: The console now uses a
+configure script for improved compatibility. Also check out the new
+screenshots.<br>
+              <b><br>
+March 14, 2003 </b>New release SDL_console 2.0! New Homepage! New
+Documentation using DOXYGEN! New everything. Now you know what I do in
+my vacation :-)<br>
+Clemens Wacha<br>
+              <b><br>
+September 19, 2002</b> SDL_console 1.3 is released! Wacha Clemens again
+couldn't stop adding stuff to the code.<br>
+I has too many features and bugfixes to mention them here. For a
+complete list see below.<br>
+He has completely rewritten the command line and added lots of useful
+control keys. <br>
+              <br>
+              <b>September 13, 2002</b> SDL_console 1.2 is released
+thanks to Wacha Clemens who added a prompt, autoscrolling commandline,
+and buxfixes.<br>
+I also added CON_Free() which equals to CON_Destroy but without
+destroying text support of DT ( thanks to Paul Wighton ), CON_Destroy
+still in the lib for compatibility. <br>
+              <br>
+              <b>September 03, 2002</b> Garrett give me the SDL_console
+project and I hope I could add nice changes to the lib ! <br>
+But's it's already stable and I think that only a few things would be
+added.<br>
+For now I added a debian package of SDL_Console, the SDL_image support
+for PNG, JPG, ... images formats, and a shared library of the lib. <br>
+SDL_console is now version 1.1. <br>
+Boris Lesner. <br>
+              <br>
+              <b>July 12, 2002</b> <font color="red" size="+1"><b>SDL_Console
+needs a new author!</b></font> I no longer have the time to work on
+SDL_Console with my new job and other interests and due to the
+popularity of SDL_Console, I do not want to let the project stagnate.
+I'm going to give the project away to someone else to maintain and
+improve as they see fit. The new author will have full control of the
+project and may do with it as they please. If you are interested in
+taking over the project, please <a href="mailto:mongoose@mongeese.org">email</a>
+me. Give me some information about your computer science skills,
+projects you've worked on, etc. After/if I get a sufficient response
+from interested people, I will decide who will take over the project.
+Thanks for all the support from everyone. I hope this project is still
+useful in the future. <br>
+              <br>
+              <b>Nov 14, 2001</b> <a href="mailto:cort@andrew.cmu.edu">Cort
+Stratton</a> added a new MSVC project for the console with the new
+source. <br>
+              <br>
+              <b>Oct 8, 2001</b> Finally an update to SDL_console!
+SDL_console has now reached version 1.0. I figured it's about time since
+there have not been any bug fixes for a while so the code is pretty
+solid. There are also lots of new additions to the code and a decent
+Makefile system now. If anyone wants to write an autoconf system though,
+be my guest.
+              <ul>
+                <li>Backward compatibilty has been completely broken.
+See the API below.</li>
+                <li>Multiple independant consoles can be displayed on
+the screen. Checkout the <a href="screen3.jpg">screenshot</a>.</li>
+                <li>Better Makefile system. Should be a little easier
+to work with now.</li>
+                <li>Fixed a few performance issues.</li>
+                <li>Cleaned up the code. Cutting and pasting everyones
+different coding styles into the source was getting messy.</li>
+              </ul>
+              <br>
+              <br>
+              <b>June 12, 2001</b> <a href="mailto:slim@maya.com">Seung
+Chan Lim</a> Has donated a version of SDL_Console with the demo in MSVC
+project format. You can download it below. <br>
+              <br>
+              <b>May 15, 2001</b> Now the console <i>really</i> works
+with OpenGL. =) Thanks to <a href="mailto:cort@andrew.cmu.edu">Cort
+Stratton</a> for fixing the OpenGL support. The console example source
+now demonstrates it's use with OpenGL. There is also the non-OpenGL
+sample source included in the archive. As usual there were a few
+cosmetic modifications and bug fixes also. <br>
+              <br>
+              <b>Apr 29, 2001</b> I added a blinking cursor showing the
+current editing position due to popular demand. Ugh I didn't realize how
+ugly this code was. =) It's efficient, just not very neat.    
+              <ul>
+                <li>Added a blinking cursor showing the current text
+position.</li>
+                <li>Reorganized some of the code to be more readable.</li>
+              </ul>
+              <b>Feb 20, 2001</b> Thanks to <a
+ href="mailto:pcruz@qwest.net">Patricia Cruz</a> for adding an OpenGL
+fix to the Console source.
+              <ul>
+                <li>Console now works within an OpenGL program and can
+be blitted to OpenGL surfaces.</li>
+              </ul>
+              <b>Nov 18, 2000</b> Lots of new changes here, mainly
+thanks to Lee Thomason for submitting some of them and motivating me to
+work on this again.
+              <ul>
+                <li>Naming conventions have been changed. Console
+commands now start with the CON_ prefix so as not to be confused with
+SDL_. Also the text drawing routines now start with DT_ so that they are
+distinguished as being seperate from the console.</li>
+                <li>Console is no longer `attached' to the top of the
+screen, it is now a box that can be located anywhere. CON_Position(int
+x, int y)</li>
+                <li>The console can be resized without reinitializing.
+CON_Resize(SDL_Rect rect)</li>
+                <li>Tab completion lists all the matching commands
+rather than just completing with the first command it partially matches
+with. (Ya I know, this ones been overdue.)</li>
+                <li>An option can be set to send back the command with
+the parameters from the user rather than just the parameters. So now
+multiple commands can be sent to one function and be distinguished from
+each other. CON_SendFullCommand(int sendOn)</li>
+                <li>New command CON_Destroy() now shuts down and frees
+the console from the program. DT_DestroyDrawText() does the same thing
+for the text drawing routines.</li>
+                <li>CON_SetConsoleBorder() has been removed. This is
+because of the new free moving console. Setting a border around the
+edges is much more complicated so I won't bother implementing this
+unless people ask for it.</li>
+                <li>All of the help resources are going onto the
+webpage now rather than in the README file.</li>
+              </ul>
+              <b>April 16, 1999</b>
+              <ul>
+                <li>Scroll back buffer amount can be specified at init.</li>
+                <li>PageUP PageDOWN scrolling through the buffer.</li>
+                <li>Printing to the console is done with printf()
+similiar arguments.</li>
+                <li>Tab completion of commands.</li>
+                <li>Arbitrary number of commands can be added.</li>
+                <li>Arbitrary number of arguments to each command from
+the input.</li>
+                <li>Alpha blending onto the destination
+surface.(optional for speed)</li>
+                <li>Border/Background image.(optional for speed)</li>
+                <li>Any bitmap font can be used.</li>
+              </ul>
+              <br>
+              </span></small><small><span
+ style="font-family: helvetica,arial,sans-serif;"><br>
+              <br>
+              <br>
+              </span></small></blockquote>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" rowspan="1" colspan="1"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
