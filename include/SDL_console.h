@@ -27,7 +27,6 @@
   #include <config.h>
 #endif
 
-
 #include "SDL_events.h"
 #include "SDL_video.h"
 #include "begin_code.h"
@@ -120,13 +119,15 @@ extern "C" {
 	extern DECLSPEC void SDLCALL CON_UpdateOffset(ConsoleInformation* console);
 	/*! Draws the console to the screen if it is visible (NOT if it isVisible()). It get's drawn if it is REALLY visible ;-) */
 	extern DECLSPEC void SDLCALL CON_DrawConsole(ConsoleInformation *console);
-	/*! Initializes a new console.
+	/*! Initializes a new console. CON_Init/CON_Init_RW are the same other than they take a filename or SDL_RWops handle (respectively)
 		@param FontName A filename of an image containing the font. Look at the example code for the image contents
+		@param rw An open SDL_RWops handle of an image containing the font. Look at the example code for the image contents
 		@param DisplayScreen The VideoSurface we are blitting to. ***This was not a very intelligent move. I will change this in the next major release.
 		CON_DrawConsole will then no more blit the console to this surface but give you a pointer to ConsoleSurface when all updates are done***
 		@param lines The total number of lines in the history
 		@param rect Position and size of the new console */
 	extern DECLSPEC ConsoleInformation* SDLCALL CON_Init(const char *FontName, SDL_Surface *DisplayScreen, int lines, SDL_Rect rect);
+	extern DECLSPEC ConsoleInformation* SDLCALL CON_Init_RW(SDL_RWops * rw, SDL_Surface *DisplayScreen, int lines, SDL_Rect rect);
 	/*! Frees DT_DrawText and calls CON_Free */
 	extern DECLSPEC void SDLCALL CON_Destroy(ConsoleInformation *console);
 	/*! Frees all the memory loaded by the console */

@@ -25,6 +25,15 @@
  *  Code Cleanup and heavily extended by: Clemens Wacha <reflex-2000@gmx.net>
  */
 
+#ifdef _MSC_VER
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#ifndef _CRT_NONSTDC_NO_WARNINGS
+#define _CRT_NONSTDC_NO_WARNINGS
+#endif
+#endif
+
 #include "SDL_console.h"
 
 #include <stdlib.h>
@@ -33,6 +42,7 @@
 #include <stdarg.h>
 #include "DT_drawtext.h"
 #include "internal.h"
+#include "SDL_timer.h"
 
 #ifdef HAVE_SDLIMAGE
 #include "SDL_image.h"
@@ -377,6 +387,16 @@ void CON_DrawConsole(ConsoleInformation *console) {
 
 /* Initializes the console */
 ConsoleInformation *CON_Init(const char *FontName, SDL_Surface *DisplayScreen, int lines, SDL_Rect rect) {
+	int ret = -1;
+	SDL_RWops * rw = SDL_RWFromFile(FontName, "rb");
+	if (rw) {
+		ret = CON_Init_RW(rw, DisplayScreen, lines, rect);
+		SDL_RWclose(rw);
+	}
+	return ret;
+}
+
+ConsoleInformation* CON_Init_RW(SDL_RWops * rw, SDL_Surface *DisplayScreen, int lines, SDL_Rect rect) {
 	int loop;
 	SDL_Surface *Temp;
 	ConsoleInformation *newinfo;
@@ -409,9 +429,8 @@ ConsoleInformation *CON_Init(const char *FontName, SDL_Surface *DisplayScreen, i
 	CON_SetTabCompletion(newinfo, Default_TabFunction);
 
 	/* Load the consoles font */
-	if(-1 == (newinfo->FontNumber = DT_LoadFont(FontName, TRANS_FONT))) {
-		PRINT_ERROR("Could not load the font ");
-		fprintf(stderr, "\"%s\" for the console!\n", FontName);
+	if(-1 == (newinfo->FontNumber = DT_LoadFont_RW(rw, TRANS_FONT))) {
+		PRINT_ERROR("Could not load the font for the console!\n");
 		return NULL;
 	}
 

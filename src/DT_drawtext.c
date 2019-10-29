@@ -87,6 +87,16 @@ void DT_SetFontAlphaGL(int FontNumber, int a) {
  * of the font for the user to use
  */
 int DT_LoadFont(const char *BitmapName, int flags) {
+	int ret = -1;
+	SDL_RWops * rw = SDL_RWFromFile(BitmapName, "rb");
+	if (rw) {
+		ret = DT_LoadFont_RW(rw, flags);
+		SDL_RWclose(rw);
+	}
+	return ret;
+}
+
+int DT_LoadFont_RW(SDL_RWops * rw, int flags) {
 	int FontNumber = 0;
 	BitFont **CurrentFont = &BitFonts;
 	SDL_Surface *Temp;
@@ -100,14 +110,14 @@ int DT_LoadFont(const char *BitmapName, int flags) {
 	/* load the font bitmap */
 
 #ifdef HAVE_SDLIMAGE
-	Temp = IMG_Load(BitmapName);
+	Temp = IMG_Load_RW(rw, 0);
 #else
-	Temp = SDL_LoadBMP(BitmapName);
+	Temp = SDL_LoadBMP_RW(rw, 0);
 #endif
 
     if(Temp == NULL) {
-		PRINT_ERROR("Cannot load file ");
-		printf("%s: %s\n", BitmapName, SDL_GetError());
+		PRINT_ERROR("Cannot load file: ");
+		printf("%s\n", SDL_GetError());
 		return -1;
 	}
 
