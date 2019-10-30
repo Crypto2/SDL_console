@@ -1,10 +1,9 @@
-SDL Console
-	A quake-like drop-down console for SDL.
+SDL Console - A quake-like drop-down console for SDL 1 & 2.
+SDL2 port by Crypto²
 
-The newest version can be found at
+This repo has a port of SDL_console to SDL2. It will only work in 2D/renderer mode have not tested OpenGL in any way. Sorry no docs/examples have been updated as yet but it's not hard to figure out @ all.
 
-http://sdlconsole.sourceforge.net/
-
+The original version can be found at http://sdlconsole.sourceforge.net/
 
 Original Version by
 Garrett Banuk
