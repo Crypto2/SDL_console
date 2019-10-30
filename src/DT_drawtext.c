@@ -79,7 +79,8 @@ void DT_SetFontAlphaGL(int FontNumber, int a) {
 			pix[i] = val;
 	/* also make sure that alpha blending is disabled for the font
 	   surface. */
-	SDL_SetAlpha(CurrentFont->FontSurface, 0, SDL_ALPHA_OPAQUE);
+	//SDL_SetAlpha(CurrentFont->FontSurface, 0, SDL_ALPHA_OPAQUE);
+	SDL_SetSurfaceBlendMode(CurrentFont->FontSurface, SDL_BLENDMODE_NONE);
 }
 
 /* Loads the font into a new struct
@@ -124,8 +125,7 @@ int DT_LoadFont_RW(SDL_RWops * rw, int flags) {
 	/* Add a font to the list */
 	*CurrentFont = (BitFont *) malloc(sizeof(BitFont));
 
-	(*CurrentFont)->FontSurface = SDL_DisplayFormat(Temp);
-	SDL_FreeSurface(Temp);
+	(*CurrentFont)->FontSurface = SDL_ConvertSurfaceFormat(Temp, SDL_PIXELFORMAT_RGBA32, 0);
 
 	(*CurrentFont)->CharWidth = (*CurrentFont)->FontSurface->w / 256;
 	(*CurrentFont)->CharHeight = (*CurrentFont)->FontSurface->h;
@@ -137,13 +137,8 @@ int DT_LoadFont_RW(SDL_RWops * rw, int flags) {
 	 * is that the first pixel of the font image will be the color we should treat
 	 * as transparent.
 	 */
-	if(flags & TRANS_FONT) {
-		if(SDL_GetVideoSurface()->flags & SDL_OPENGLBLIT)
-			DT_SetFontAlphaGL(FontNumber, SDL_ALPHA_TRANSPARENT);
-		else
-			SDL_SetColorKey((*CurrentFont)->FontSurface, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB((*CurrentFont)->FontSurface->format, 255, 0, 255));
-	} else if(SDL_GetVideoSurface()->flags & SDL_OPENGLBLIT)
-		DT_SetFontAlphaGL(FontNumber, SDL_ALPHA_OPAQUE);
+	if(flags & TRANS_FONT)
+		SDL_SetColorKey((*CurrentFont)->FontSurface, SDL_TRUE, SDL_MapRGB((*CurrentFont)->FontSurface->format, 255, 0, 255));
 
 	return FontNumber;
 }
@@ -185,12 +180,6 @@ void DT_DrawText(const char *string, SDL_Surface *surface, int FontType, int x, 
 		SourceRect.x = current * CurrentFont->CharWidth;
 		SDL_BlitSurface(CurrentFont->FontSurface, &SourceRect, surface, &DestRect);
 		DestRect.x += CurrentFont->CharWidth;
-	}
-	/* if we're in OpenGL-mode, we need to manually update after blitting. */
-	if(surface->flags & SDL_OPENGLBLIT) {
-		DestRect.x = x;
-		DestRect.w = characters * CurrentFont->CharWidth;
-		SDL_UpdateRects(surface, 1, &DestRect);
 	}
 }
 
@@ -252,5 +241,3 @@ void DT_DestroyDrawText() {
 
 	BitFonts = NULL;
 }
-
-

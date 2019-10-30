@@ -29,6 +29,7 @@
 
 #include "SDL_events.h"
 #include "SDL_video.h"
+#include "SDL_render.h"
 #include "begin_code.h"
 
 /*! Number of visible characters in a line. Lines in the history, the commandline, or CON_Out strings cannot be longer
@@ -91,7 +92,7 @@ extern "C" {
 		int Offset;							/*! First visible character relative to the currently typed in command (used if command is too long to fit into console) */
 		int InsMode;						/*! Boolean that tells us whether we are in Insert- or Overwrite-Mode */
 		SDL_Surface *ConsoleSurface;		/*! THE Surface of the console */
-		SDL_Surface *OutputScreen;			/*! This is the screen to draw the console to (normally you VideoSurface)*/
+		SDL_Renderer * OutputRenderer;		/*! The renderer to draw the console to */
 		SDL_Surface *BackgroundImage;		/*! Background image for the console */
 		SDL_Surface *InputBackground;		/*! Dirty rectangle that holds the part of the background image that is behind the commandline */
 		int DispX, DispY;					/*! The top left x and y coords of the console on the display screen */
@@ -126,8 +127,8 @@ extern "C" {
 		CON_DrawConsole will then no more blit the console to this surface but give you a pointer to ConsoleSurface when all updates are done***
 		@param lines The total number of lines in the history
 		@param rect Position and size of the new console */
-	extern DECLSPEC ConsoleInformation* SDLCALL CON_Init(const char *FontName, SDL_Surface *DisplayScreen, int lines, SDL_Rect rect);
-	extern DECLSPEC ConsoleInformation* SDLCALL CON_Init_RW(SDL_RWops * rw, SDL_Surface *DisplayScreen, int lines, SDL_Rect rect);
+	extern DECLSPEC ConsoleInformation* SDLCALL CON_Init(const char *FontName, SDL_Renderer * renderer, int lines, SDL_Rect rect);
+	extern DECLSPEC ConsoleInformation* SDLCALL CON_Init_RW(SDL_RWops * rw, SDL_Renderer * renderer, int lines, SDL_Rect rect);
 	/*! Frees DT_DrawText and calls CON_Free */
 	extern DECLSPEC void SDLCALL CON_Destroy(ConsoleInformation *console);
 	/*! Frees all the memory loaded by the console */
@@ -146,15 +147,13 @@ extern "C" {
 	extern DECLSPEC void SDLCALL CON_Position(ConsoleInformation *console, int x, int y);
 	/*! Changes the size of the console */
 	extern DECLSPEC int SDLCALL CON_Resize(ConsoleInformation *console, SDL_Rect rect);
-	/*! Beams a console to another screen surface. Needed if you want to make a Video restart in your program. This
-		function first changes the OutputScreen Pointer then calls CON_Resize to adjust the new size. ***Will disappear in the next major release. Instead
-		i will introduce a new function called CON_ReInit or something that adjusts the internal parameters etc *** */
-	extern DECLSPEC int SDLCALL CON_Transfer(ConsoleInformation* console, SDL_Surface* new_outputscreen, SDL_Rect rect);
 	/*! Give focus to a console. Make it the "topmost" console. This console will receive events
 		sent with CON_Events() ***Will disappear in the next major release. There is no need for such a focus model *** */
+	/* Transfers the console to another screen surface, and adjusts size */
+	extern DECLSPEC int SDLCALL CON_Transfer(ConsoleInformation* console, SDL_Renderer* new_outputrenderer, SDL_Rect rect);
 	extern DECLSPEC void SDLCALL CON_Topmost(ConsoleInformation *console);
 	/*! Modify the prompt of the console. If you want a backslash you will have to escape it. */
-	extern DECLSPEC void SDLCALL CON_SetPrompt(ConsoleInformation *console, char* newprompt);
+	extern DECLSPEC void SDLCALL CON_SetPrompt(ConsoleInformation *console, const char* newprompt);
 	/*! Set the key, that invokes a CON_Hide() after press. default is ESCAPE and you can always hide using
 		ESCAPE and the HideKey (2 keys for hiding). compared against event->key.keysym.sym !! */
 	extern DECLSPEC void SDLCALL CON_SetHideKey(ConsoleInformation *console, int key);
