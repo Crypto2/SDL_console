@@ -3,7 +3,7 @@ SDL2 port by Crypto²
 
 This repo has a port of SDL_console to SDL2. It will only work in 2D/renderer mode have not tested OpenGL in any way. Sorry no docs/examples have been updated as yet but it's not hard to figure out @ all.
 
-The original version can be found at http://sdlconsole.sourceforge.net/
+The original version can be found at https://wacha.ch/wiki/sdlconsole and http://sdlconsole.sourceforge.net/
 
 Original Version by
 Garrett Banuk
